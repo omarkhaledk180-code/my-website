@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>OxyGen</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+<style>
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{font-family:'Poppins',sans-serif;background:#fff;color:#222;font-size:13px;max-width:430px;margin:0 auto;}
+
+  /* ── NAV ── */
+  nav{
+    display:flex;align-items:center;justify-content:space-between;
+    padding:8px 14px;background:#fff;
+    box-shadow:0 1px 3px rgba(0,0,0,.1);
+  }
+  .logo{
+    background:#3a7d44;color:#fff;font-size:10px;font-weight:700;
+    padding:4px 12px;border-radius:20px;letter-spacing:.5px;
+  }
+  .nav-right{display:flex;align-items:center;gap:16px;}
+  .nav-home{font-size:12px;font-weight:500;color:#222;text-decoration:none;}
+  .btn-nav-sub{
+    background:#7b2020;color:#fff;border:none;border-radius:20px;
+    padding:6px 14px;font-size:11px;font-weight:600;cursor:pointer;font-family:'Poppins',sans-serif;
+  }
+
+  /* ── HERO ── */
+  .hero{
+    position:relative;min-height:210px;overflow:hidden;
+    display:flex;align-items:flex-start;
+  }
+  .hero-img{
+    position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;
+  }
+  .hero-overlay{position:absolute;inset:0;background:rgba(0,0,0,.45);}
+  .hero-content{
+    position:relative;z-index:2;padding:28px 18px 40px;
+  }
+  .hero-content h1{
+    color:#fff;font-size:20px;font-weight:700;line-height:1.3;margin-bottom:8px;
+  }
+  .hero-content p{
+    color:#ddd;font-size:11px;line-height:1.65;margin-bottom:16px;max-width:260px;
+  }
+  .hero-btns{display:flex;gap:8px;}
+  .btn-hero-sub{
+    background:#3a7d44;color:#fff;border:none;border-radius:20px;
+    padding:7px 15px;font-size:11px;font-weight:600;cursor:pointer;font-family:'Poppins',sans-serif;
+  }
+  .btn-hero-learn{
+    background:transparent;color:#fff;border:1.5px solid #fff;border-radius:20px;
+    padding:6px 14px;font-size:11px;font-weight:500;cursor:pointer;font-family:'Poppins',sans-serif;
+  }
+
+  /* ── PRODUCTS SLIDER ── */
+  .products{padding:18px 0 10px;}
+  .slider-row{display:flex;align-items:center;gap:4px;padding:0 4px;}
+  .arr{
+    background:#f2f2f2;border:none;border-radius:50%;
+    width:28px;height:28px;font-size:18px;cursor:pointer;
+    display:flex;align-items:center;justify-content:center;
+    color:#555;flex-shrink:0;line-height:1;
+  }
+  .cards-wrap{display:flex;gap:10px;flex:1;overflow:hidden;}
+  .pcard{
+    flex:1;min-width:0;border:1px solid #e0e0e0;border-radius:10px;
+    padding:12px;background:#fff;flex-direction:column;
+  }
+  .pcard img{width:100%;height:95px;object-fit:contain;display:block;margin-bottom:8px;}
+  .pcard-name{font-size:12px;font-weight:600;color:#222;margin-bottom:5px;}
+  .pcard-desc{font-size:10px;color:#666;line-height:1.5;margin-bottom:9px;min-height:38px;}
+  .pcard-btns{display:flex;gap:5px;margin-bottom:8px;}
+  .btn-buy{
+    background:#3a7d44;color:#fff;border:none;border-radius:14px;
+    padding:5px 13px;font-size:10px;font-weight:600;cursor:pointer;font-family:'Poppins',sans-serif;
+  }
+  .btn-psub{
+    background:#7b2020;color:#fff;border:none;border-radius:14px;
+    padding:5px 9px;font-size:9.5px;font-weight:500;cursor:pointer;font-family:'Poppins',sans-serif;
+  }
+  .pcard-price{font-size:13px;font-weight:700;color:#222;}
+
+  /* ── PRICING ── */
+  .pricing{background:#3a6b3a;padding:22px 14px;}
+  .pricing-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;}
+  .pc{color:#fff;}
+  .pc h3{font-size:11px;font-weight:700;margin-bottom:7px;line-height:1.3;}
+  .pc ul{list-style:none;margin-bottom:10px;}
+  .pc ul li{
+    font-size:9.5px;color:#c5dfc5;
+    border-bottom:1px solid rgba(255,255,255,.18);
+    padding:3px 0;line-height:1.5;
+  }
+  .pc-price{font-size:11px;font-weight:700;color:#fff;margin-bottom:9px;}
+  .pc-btns{display:flex;flex-direction:column;gap:5px;}
+  .btn-pbuy{
+    background:#fff;color:#3a6b3a;border:none;border-radius:14px;
+    padding:5px 8px;font-size:9.5px;font-weight:700;cursor:pointer;
+    text-align:center;font-family:'Poppins',sans-serif;
+  }
+  .btn-ppsub{
+    background:#7b2020;color:#fff;border:none;border-radius:14px;
+    padding:5px 6px;font-size:8.5px;font-weight:500;cursor:pointer;
+    text-align:center;font-family:'Poppins',sans-serif;
+  }
+
+  /* ── CONTACT ── */
+  .contact{background:#3a7d6a;padding:22px 20px;text-align:center;}
+  .contact h2{color:#fff;font-size:13px;font-weight:600;line-height:1.5;margin-bottom:14px;}
+  .contact-row{display:flex;gap:0;border-radius:8px;overflow:hidden;background:#fff;max-width:340px;margin:0 auto;}
+  .contact-row input{
+    flex:1;border:none;padding:12px 14px;font-size:12px;
+    color:#999;outline:none;font-family:'Poppins',sans-serif;background:#fff;
+  }
+  .btn-send{
+    background:#3a6b3a;color:#fff;border:none;
+    padding:12px 20px;font-size:12px;font-weight:600;cursor:pointer;
+    font-family:'Poppins',sans-serif;
+  }
+
+  /* ── FOOTER ── */
+  footer{background:#1b1b2f;color:#bbb;padding:24px 18px;}
+  .foot-intro{font-size:11px;color:#999;line-height:1.6;margin-bottom:18px;}
+  .foot-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px 10px;margin-bottom:18px;}
+  .foot-col h4{color:#fff;font-size:12px;font-weight:600;margin-bottom:8px;}
+  .foot-col ul{list-style:disc;padding-left:16px;}
+  .foot-col ul li{margin-bottom:4px;}
+  .foot-col ul li a{color:#999;font-size:11px;text-decoration:none;}
+  .foot-col ul li a:hover{color:#fff;}
+  .foot-bottom{
+    border-top:1px solid #2e2e44;padding-top:12px;
+    color:#666;font-size:10px;display:flex;flex-wrap:wrap;gap:6px;
+  }
+  .foot-bottom a{color:#666;text-decoration:none;}
+  .foot-bottom span{color:#555;}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="logo">OxyGen</div>
+  <div class="nav-right">
+    <a class="nav-home" href="#">Home</a>
+    <button class="btn-nav-sub">Subscribe now</button>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <img class="hero-img" src="https://images.unsplash.com/photo-1416879595882-3373a0480b5b?w=900&q=80" alt="Plants"/>
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <h1>Elevate Your Space with Nature</h1>
+    <p>At OxyGens, we deliver premium, hand-picked plants carefully selected to transform your home and office into a living sanctuary. High-quality greenery, delivered right to your door.</p>
+    <div class="hero-btns">
+      <button class="btn-hero-sub">Subscribe now</button>
+      <button class="btn-hero-learn">Learn More</button>
+    </div>
+  </div>
+</section>
+
+<!-- PRODUCTS -->
+<section class="products">
+  <div class="slider-row">
+    <button class="arr" onclick="slide(-1)">&#8249;</button>
+    <div class="cards-wrap" id="track">
+
+      <div class="pcard" data-i="0">
+        <img src="https://images.unsplash.com/photo-1598880940080-ff9a29891b85?w=400&q=80" alt="cast iron plant"/>
+        <div class="pcard-name">cast iron plant</div>
+        <div class="pcard-desc">A tough, low-light tolerant plant perfect for offices and shaded rooms.</div>
+        <div class="pcard-btns">
+          <button class="btn-buy">Buy</button>
+          <button class="btn-psub">Subscribe now</button>
+        </div>
+        <div class="pcard-price">EGP420.00</div>
+      </div>
+
+      <div class="pcard" data-i="1">
+        <img src="https://images.unsplash.com/photo-1632207691143-643e2a9a9361?w=400&q=80" alt="lady palm"/>
+        <div class="pcard-name">lady palm</div>
+        <div class="pcard-desc">An elegant fan-shaped palm that adds a tropical feel to any living space.</div>
+        <div class="pcard-btns">
+          <button class="btn-buy">Buy</button>
+          <button class="btn-psub">Subscribe now</button>
+        </div>
+        <div class="pcard-price">EGP220.00</div>
+      </div>
+
+      <div class="pcard" data-i="2" style="display:none">
+        <img src="https://images.unsplash.com/photo-1485955900006-10f4d324d411?w=400&q=80" alt="peace lily"/>
+        <div class="pcard-name">peace lily</div>
+        <div class="pcard-desc">Graceful white blooms with excellent air-purifying qualities.</div>
+        <div class="pcard-btns">
+          <button class="btn-buy">Buy</button>
+          <button class="btn-psub">Subscribe now</button>
+        </div>
+        <div class="pcard-price">EGP180.00</div>
+      </div>
+
+      <div class="pcard" data-i="3" style="display:none">
+        <img src="https://images.unsplash.com/photo-1509423350716-97f9360b4e09?w=400&q=80" alt="snake plant"/>
+        <div class="pcard-name">snake plant</div>
+        <div class="pcard-desc">Nearly indestructible and stylish — filters toxins day and night.</div>
+        <div class="pcard-btns">
+          <button class="btn-buy">Buy</button>
+          <button class="btn-psub">Subscribe now</button>
+        </div>
+        <div class="pcard-price">EGP150.00</div>
+      </div>
+
+    </div>
+    <button class="arr" onclick="slide(1)">&#8250;</button>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section class="pricing">
+  <div class="pricing-grid">
+
+    <div class="pc">
+      <h3>The little office</h3>
+      <ul>
+        <li>One small plant every month</li>
+        <li>Simple ceramic pot</li>
+        <li>Care semi-guide</li>
+        <li>Good quality</li>
+      </ul>
+      <div class="pc-price">EGP 500.00/M</div>
+      <div class="pc-btns">
+        <button class="btn-pbuy">Buy</button>
+        <button class="btn-ppsub">Subscribe now</button>
+      </div>
+    </div>
+
+    <div class="pc">
+      <h3>Oxygen Plus Professional</h3>
+      <ul>
+        <li>Two medium plants monthly</li>
+        <li>Decorative/fertilizer</li>
+        <li>Drip water sprayer</li>
+        <li>Free replacement if plant dies</li>
+        <li>Ordering guide</li>
+      </ul>
+      <div class="pc-price">EGP 800.00/M</div>
+      <div class="pc-btns">
+        <button class="btn-pbuy">Buy</button>
+        <button class="btn-ppsub">Subscribe now</button>
+      </div>
+    </div>
+
+    <div class="pc">
+      <h3>The Home Forest Premium</h3>
+      <ul>
+        <li>3–5 assorted plants big and small</li>
+        <li>Care visit every 2 hour</li>
+        <li>Grooming set pot, soil, fertilizer</li>
+        <li>Monthly soil top-up</li>
+        <li>Perfect quality</li>
+      </ul>
+      <div class="pc-price">EGP 1000.00/M</div>
+      <div class="pc-btns">
+        <button class="btn-pbuy">Buy</button>
+        <button class="btn-ppsub">Subscribe now</button>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact">
+  <h2>Send us your opinion and<br/>any questions you would<br/>like to ask</h2>
+  <div class="contact-row">
+    <input type="text" placeholder="Type here..."/>
+    <button class="btn-send">Send</button>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p class="foot-intro">We strive to deliver top-notch digital solutions to help our clients grow and succeed in the digital world.</p>
+  <div class="foot-grid">
+    <div class="foot-col">
+      <h4>Quick Links</h4>
+      <ul>
+        <li><a href="#">Home</a></li>
+        <li><a href="#">About Us</a></li>
+        <li><a href="#">Services</a></li>
+        <li><a href="#">Blog</a></li>
+        <li><a href="#">Contact Us</a></li>
+      </ul>
+    </div>
+    <div class="foot-col">
+      <h4>Contact Info</h4>
+      <ul>
+        <li><a href="#">Email: info@yourdomain.com</a></li>
+        <li><a href="#">Phone: +20 12 346 6789</a></li>
+        <li><a href="#">Address: Cairo, Egypt</a></li>
+      </ul>
+    </div>
+    <div class="foot-col">
+      <h4>Follow Us</h4>
+      <ul>
+        <li><a href="#">Facebook</a></li>
+        <li><a href="#">X (Twitter)</a></li>
+        <li><a href="#">LinkedIn</a></li>
+        <li><a href="#">Instagram</a></li>
+      </ul>
+    </div>
+    <div class="foot-col">
+      <h4>Legal Links</h4>
+      <ul>
+        <li><a href="#">Privacy Policy</a></li>
+        <li><a href="#">Terms of Service</a></li>
+        <li><a href="#">Disclaimer</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="foot-bottom">
+    <a href="#">Privacy Policy</a><span>|</span>
+    <a href="#">Terms of Service</a><span>|</span>
+    <a href="#">Disclaimer</a>
+    <span style="width:100%;margin-top:4px;">© 2026 [Brand Name]. All rights reserved.</span>
+  </div>
+</footer>
+
+<script>
+  const allCards = Array.from(document.querySelectorAll('.pcard'));
+  let cur = 0;
+  const show = 2;
+  function render() {
+    allCards.forEach((c, i) => {
+      const pos = (i - cur + allCards.length) % allCards.length;
+      c.style.display = pos < show ? 'flex' : 'none';
+    });
+  }
+  function slide(d) {
+    cur = (cur + d + allCards.length) % allCards.length;
+    render();
+  }
+  render();
+</script>
+</body>
+</html>
